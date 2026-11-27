@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBHAYA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">UBHAYA</span>
+      <span class="tagline">Every claim, checked against the evidence</span>
+    </div>
+    <div class="case-picker">
+      <label for="case-select">Case</label>
+      <select id="case-select"></select>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Screens">
+    <a class="tab active" href="#overview">1 Case overview</a>
+    <span class="tab disabled" title="Phase 2 (P2.4)">2 Statements</span>
+    <span class="tab disabled" title="Phase 2 (P2.4)">3 Claim detail</span>
+    <span class="tab disabled" title="Phase 4 (P4.7)">4 Timeline</span>
+    <span class="tab disabled" title="Phase 4 (P4.1)">5 Account board</span>
+    <span class="tab disabled" title="Phase 4 (P4.3)">6 Next evidence</span>
+  </nav>
+
+  <main id="overview">
+    <section id="empty" class="notice" hidden>
+      No case loaded yet. Run <code>python manage.py load-demo</code> and refresh.
+    </section>
+
+    <section id="case-head" hidden>
+      <div class="case-title-row">
+        <h1 id="case-title"></h1>
+        <span id="synthetic-badge" class="badge synthetic" hidden>Synthetic data</span>
+      </div>
+      <p id="case-scope" class="muted"></p>
+      <div class="stats">
+        <div class="stat"><span class="num" id="stat-artifacts">0</span><span class="lbl">Artifacts</span></div>
+        <div class="stat"><span class="num" id="stat-statements">0</span><span class="lbl">Statements</span></div>
+        <div class="stat"><span class="num" id="stat-events">0</span><span class="lbl">Events parsed</span></div>
+        <div class="stat">
+          <span class="num" id="stat-chain">-</span>
+          <span class="lbl">Audit chain <button class="link" id="btn-chain">check</button></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="artifacts-section" hidden>
+      <div class="section-head">
+        <h2>Evidence</h2>
+        <button id="btn-verify-all">Verify all hashes</button>
+      </div>
+      <div class="table-wrap">
+        <table id="artifacts">
+          <thead>
+            <tr><th>ID</th><th>File</th><th>Type</th><th>Source</th><th class="num">Size</th><th class="num">Events</th><th>SHA-256</th><th>Integrity</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="statements-section" hidden>
+      <h2>Statements</h2>
+      <div id="statements" class="cards"></div>
+    </section>
+
+    <section id="viewer" class="viewer" hidden>
+      <div class="section-head">
+        <h2 id="viewer-title"></h2>
+        <button class="link" id="viewer-close">Close</button>
+      </div>
+      <div id="viewer-body"></div>
+    </section>
+  </main>
+
+  <footer class="foot">Offline prototype. Synthetic data only: every person, place and number is invented.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

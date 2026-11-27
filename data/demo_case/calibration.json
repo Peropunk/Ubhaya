@@ -1,0 +1,23 @@
+{
+  "records": [
+    {
+      "source_id": "CAM-A",
+      "offset_s": 0,
+      "uncertainty_s": 60,
+      "method": "CAM-A overlay compared with door log badge E-1012 IN at 08:58 on 3 Dec; difference under 1 minute",
+      "reference_artifact": "door_log.csv",
+      "valid_from": "2025-12-01T00:00:00+05:30",
+      "valid_to": "2025-12-10T23:59:59+05:30"
+    },
+    {
+      "source_id": "CAM-B",
+      "offset_s": 420,
+      "uncertainty_s": 60,
+      "method": "Investigator photographed CAM-B monitor beside a phone showing network time on 5 Dec; CAM-B 7 min slow",
+      "reference_artifact": "calibration photo (not in demo pack)",
+      "valid_from": "2025-12-01T00:00:00+05:30",
+      "valid_to": "2025-12-10T23:59:59+05:30"
+    }
+  ],
+  "note": "Synthetic calibration record for the UBHAYA demo."
+}

@@ -1,0 +1,11 @@
+# Pinned for the offline build (P0.8). Add new libraries here AND to docs/REFERENCES.md.
+fastapi==0.165.0
+starlette==1.10.0
+uvicorn==0.54.0
+python-multipart==0.0.34
+pydantic==2.14.4
+pydantic_core==2.50.5
+pillow==13.0.0
+# tests
+pytest==9.2.0
+httpx==0.29.0

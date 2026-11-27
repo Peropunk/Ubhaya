@@ -1,0 +1,61 @@
+{
+  "case_date": "2025-12-03",
+  "timezone": "Asia/Kolkata",
+  "places": {
+    "office": {
+      "label": "Saanvi Logistics office",
+      "devices": [
+        "PC-14",
+        "MAIN-ENTRANCE",
+        "STAFF-SIDE",
+        "CAM-A",
+        "CAM-B"
+      ]
+    },
+    "dhaba": {
+      "label": "Sharma Dhaba (highway)",
+      "merchants": [
+        "Sharma Dhaba"
+      ],
+      "keywords": [
+        "dhaba"
+      ]
+    }
+  },
+  "required_orders": [
+    {
+      "id": "entrance_before_corridor",
+      "first": "CAM-A",
+      "then": "CAM-B",
+      "note": "A visitor is seen at the entrance camera before the corridor camera"
+    },
+    {
+      "id": "badge_alternates",
+      "kind": "badge_in_out_alternate",
+      "note": "A badge should go IN then OUT before it goes IN again (anti-passback)"
+    }
+  ],
+  "min_travel_s": [
+    {
+      "from": "office",
+      "to": "dhaba",
+      "seconds": 720
+    }
+  ],
+  "duplicate_window_s": 2,
+  "actors": {
+    "Ravi Kumar": {
+      "accounts": [
+        "ravi.k"
+      ],
+      "badges": [
+        "E-1047"
+      ],
+      "upi": [
+        "upi_ravi.csv"
+      ],
+      "chat_name": "Ravi Kumar"
+    }
+  },
+  "note": "Synthetic site configuration for the UBHAYA demo. Travel time is a demo assumption."
+}

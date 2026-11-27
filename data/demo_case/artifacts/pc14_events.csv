@@ -1,0 +1,34 @@
+time_utc,event_id,user,detail
+2025-12-03T03:58:12Z,4624,priya.n,Logon type 2 (interactive)
+2025-12-03T04:27:25Z,4663,priya.n,Object access: D:\Finance\Vendor_master.xlsx (read)
+2025-12-03T04:47:51Z,4663,priya.n,Object access: D:\Finance\Invoice_batch_1127.pdf (read)
+2025-12-03T04:58:14Z,4663,priya.n,Object access: D:\Finance\Bank_reco_Nov.xlsx (read)
+2025-12-03T05:23:51Z,4663,priya.n,Object access: D:\Finance\Invoice_batch_1127.pdf (read)
+2025-12-03T05:35:07Z,4663,priya.n,Object access: D:\Finance\Vendor_master.xlsx (read)
+2025-12-03T05:53:40Z,4663,priya.n,Object access: D:\Finance\Invoice_batch_1127.pdf (read)
+2025-12-03T06:20:01Z,4663,priya.n,Object access: D:\Finance\Bank_reco_Nov.xlsx (read)
+2025-12-03T06:45:56Z,4663,priya.n,Object access: D:\Finance\Bank_reco_Nov.xlsx (read)
+2025-12-03T07:02:33Z,4663,priya.n,Object access: D:\Finance\Payroll_draft_Nov.xlsx (read)
+2025-12-03T07:26:50Z,4663,priya.n,Object access: D:\Finance\Petty_cash_log.docx (read)
+2025-12-03T07:41:27Z,4663,priya.n,Object access: D:\Finance\Vendor_master.xlsx (read)
+2025-12-03T08:02:59Z,4663,priya.n,Object access: D:\Finance\Vendor_master.xlsx (read)
+2025-12-03T08:24:48Z,4663,priya.n,Object access: D:\Finance\GST_returns_Q3.xlsx (read)
+2025-12-03T08:43:26Z,4663,priya.n,Object access: D:\Finance\Bank_reco_Nov.xlsx (read)
+2025-12-03T09:06:45Z,4663,priya.n,Object access: D:\Finance\Invoice_batch_1127.pdf (read)
+2025-12-03T09:24:42Z,4663,priya.n,Object access: D:\Finance\Invoice_batch_1127.pdf (read)
+2025-12-03T09:37:58Z,4663,priya.n,Object access: D:\Finance\Vendor_master.xlsx (read)
+2025-12-03T10:04:49Z,4663,priya.n,Object access: D:\Finance\Petty_cash_log.docx (read)
+2025-12-03T12:04:55Z,4634,priya.n,Logoff
+2025-12-03T16:43:21Z,4624,ravi.k,Logon type 2 (interactive)
+2025-12-03T16:44:05Z,6416,ravi.k,"New external device: USB mass storage, vendor DEMO-USB, serial 0019E06B, mounted E:"
+2025-12-03T16:44:38Z,4663,ravi.k,File copy: D:\Finance\Q3_vendor_payments.xlsx -> E:\Q3_vendor_payments.xlsx
+2025-12-03T16:45:35Z,4663,ravi.k,File copy: D:\Finance\Vendor_bank_details.xlsx -> E:\Vendor_bank_details.xlsx
+2025-12-03T16:46:25Z,4663,ravi.k,File copy: D:\Finance\Tender_bids_2025.pdf -> E:\Tender_bids_2025.pdf
+2025-12-03T16:47:21Z,4663,ravi.k,File copy: D:\Finance\Rate_contract_Dec.xlsx -> E:\Rate_contract_Dec.xlsx
+2025-12-03T16:48:17Z,4663,ravi.k,File copy: D:\Finance\Board_note_Nov.docx -> E:\Board_note_Nov.docx
+2025-12-03T16:49:16Z,4663,ravi.k,File copy: D:\Finance\Vendor_master.xlsx -> E:\Vendor_master.xlsx
+2025-12-03T16:50:13Z,4663,ravi.k,File copy: D:\Finance\Audit_observations.pdf -> E:\Audit_observations.pdf
+2025-12-03T16:50:54Z,4663,ravi.k,File copy: D:\Finance\Payment_approvals_Q3.pdf -> E:\Payment_approvals_Q3.pdf
+2025-12-03T16:52:41Z,4663,ravi.k,File copy: D:\Finance\Signatory_list.pdf -> E:\Signatory_list.pdf
+2025-12-03T16:53:02Z,6417,ravi.k,"Device removed: USB mass storage, serial 0019E06B"
+2025-12-03T16:53:30Z,4634,ravi.k,Logoff

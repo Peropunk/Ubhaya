@@ -1,0 +1,381 @@
+{
+  "case": "PC-14 synthetic demo",
+  "generator": "data/make_demo_case.py",
+  "seed": 1403,
+  "claims": [
+    {
+      "id": "M1",
+      "statement": "manager",
+      "quote": "Ravi was the only person with access to PC-14 that night",
+      "char_start": 208,
+      "char_end": 264,
+      "type": "presence",
+      "expected_verdict": "contradicted",
+      "expected_rule": "R3",
+      "expected_rules": [
+        "R3"
+      ],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row185"
+      ],
+      "note": "Exclusive claim; V-03 enters at 22:06:10 while Ravi's account is active"
+    },
+    {
+      "id": "M2",
+      "statement": "manager",
+      "quote": "The files were copied around 22:15",
+      "char_start": 328,
+      "char_end": 362,
+      "type": "time",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "pc14_events.csv#row22",
+        "pc14_events.csv#row23",
+        "pc14_events.csv#row31"
+      ],
+      "note": "PC log is UTC: 16:44Z = 22:14 IST"
+    },
+    {
+      "id": "M3",
+      "statement": "manager",
+      "quote": "Ravi's account was used to log in to PC-14 at about 10:10 pm",
+      "char_start": 266,
+      "char_end": 326,
+      "type": "action",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "pc14_events.csv#row21"
+      ],
+      "note": "Account-level claim; 16:43:21Z = 22:13:21 IST"
+    },
+    {
+      "id": "M4",
+      "statement": "manager",
+      "quote": "Ravi copied the files himself",
+      "char_start": 364,
+      "char_end": 393,
+      "type": "action",
+      "expected_verdict": "uncertain",
+      "expected_rule": "R4",
+      "expected_rules": [
+        "R4"
+      ],
+      "expected_strength": null,
+      "evidence": [
+        "pc14_events.csv#row21",
+        "upi_ravi.csv#row11",
+        "whatsapp_ravi_aman.txt#line22"
+      ],
+      "note": "Login names ravi.k (direct) but Ravi's phone pays at the dhaba 7 min later; evidence points both ways"
+    },
+    {
+      "id": "M5",
+      "statement": "manager",
+      "quote": "His friend Aman paid him that same night",
+      "char_start": 426,
+      "char_end": 466,
+      "type": "time",
+      "expected_verdict": "contradicted",
+      "expected_rule": "R2",
+      "expected_rules": [
+        "R2"
+      ],
+      "expected_strength": "direct",
+      "evidence": [
+        "upi_ravi.csv#row12"
+      ],
+      "note": "Aman's payment is on 4 Dec 11:42, not the night of 3 Dec"
+    },
+    {
+      "id": "M6",
+      "statement": "manager",
+      "quote": "Aman transferred him Rs 20,000",
+      "char_start": 468,
+      "char_end": 498,
+      "type": "amount",
+      "expected_verdict": "contradicted",
+      "expected_rule": "R5",
+      "expected_rules": [
+        "R5"
+      ],
+      "expected_strength": "direct",
+      "evidence": [
+        "upi_ravi.csv#row12"
+      ],
+      "note": "Bank shows Rs 15,000, not Rs 20,000"
+    },
+    {
+      "id": "M7",
+      "statement": "manager",
+      "quote": "Ravi has been asking colleagues for money for months",
+      "char_start": 500,
+      "char_end": 552,
+      "type": "action",
+      "expected_verdict": "no_evidence",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": null,
+      "evidence": [],
+      "note": "Nothing in the case covers this"
+    },
+    {
+      "id": "R1",
+      "statement": "ravi",
+      "quote": "Main 9:50 pe office se nikal gaya tha",
+      "char_start": 75,
+      "char_end": 112,
+      "type": "time",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row184"
+      ],
+      "note": "Badge OUT 21:52:07 inside 9:50 +/- 5 min"
+    },
+    {
+      "id": "R2",
+      "statement": "ravi",
+      "quote": "9:55 tak main Sharma Dhaba pahunch gaya tha",
+      "char_start": 114,
+      "char_end": 157,
+      "type": "presence",
+      "expected_verdict": "contradicted",
+      "expected_rule": "R4",
+      "expected_rules": [
+        "R4",
+        "R2"
+      ],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row184",
+        "whatsapp_ravi_aman.txt#line22"
+      ],
+      "note": "Badge OUT 21:52 at office + 12 min travel makes 9:55 at the dhaba impossible; his own chat says arrived 22:07"
+    },
+    {
+      "id": "R3",
+      "statement": "ravi",
+      "quote": "Maine us raat PC-14 pe login nahi kiya",
+      "char_start": 221,
+      "char_end": 259,
+      "type": "absence",
+      "expected_verdict": "uncertain",
+      "expected_rule": "R3",
+      "expected_rules": [
+        "R3",
+        "R4"
+      ],
+      "expected_strength": null,
+      "evidence": [
+        "pc14_events.csv#row21",
+        "upi_ravi.csv#row11"
+      ],
+      "note": "Account ravi.k logs on at 22:13 but Ravi's UPI pays at the dhaba at 22:20"
+    },
+    {
+      "id": "R4",
+      "statement": "ravi",
+      "quote": "Dhaba pe maine 340 rupaye UPI se pay kiye, kareeb 10:20 baje",
+      "char_start": 159,
+      "char_end": 219,
+      "type": "presence",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "indirect",
+      "evidence": [
+        "upi_ravi.csv#row11"
+      ],
+      "note": "UPI Rs 340 Sharma Dhaba 22:20:31 places his phone, not him, at the dhaba: supported, not proven"
+    },
+    {
+      "id": "R5",
+      "statement": "ravi",
+      "quote": "Aman ne 4 December ko mere 15,000 rupaye wapas kiye the",
+      "char_start": 316,
+      "char_end": 371,
+      "type": "amount",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "upi_ravi.csv#row12",
+        "whatsapp_ravi_aman.txt#line30"
+      ],
+      "note": "UPI CR Rs 15,000 from Aman on 4 Dec"
+    },
+    {
+      "id": "R6",
+      "statement": "ravi",
+      "quote": "Mera password team ki shared sheet mein likha hua tha",
+      "char_start": 261,
+      "char_end": 314,
+      "type": "relationship",
+      "expected_verdict": "no_evidence",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": null,
+      "evidence": [],
+      "note": "Password sheet not in the case"
+    },
+    {
+      "id": "G1",
+      "statement": "guard",
+      "quote": "रवि साहब रात करीब 9:50 बजे ऑफिस से बाहर निकले",
+      "char_start": 67,
+      "char_end": 112,
+      "type": "time",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row184"
+      ],
+      "note": "Around 9:50 = 21:35-22:05; badge OUT 21:52:07"
+    },
+    {
+      "id": "G2",
+      "statement": "guard",
+      "quote": "करीब 10:30 बजे एक विज़िटर आया",
+      "char_start": 114,
+      "char_end": 143,
+      "type": "time",
+      "expected_verdict": "contradicted",
+      "expected_rule": "R2",
+      "expected_rules": [
+        "R2"
+      ],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row185"
+      ],
+      "note": "Around 10:30 = 22:15-22:45; V-03 IN 22:06:10"
+    },
+    {
+      "id": "G3",
+      "statement": "guard",
+      "quote": "मैंने उसे विज़िटर कार्ड V-03 दिया",
+      "char_start": 145,
+      "char_end": 178,
+      "type": "identity",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row185"
+      ],
+      "note": "Door log shows V-03 in use that night"
+    },
+    {
+      "id": "G4",
+      "statement": "guard",
+      "quote": "विज़िटर ने रजिस्टर में अपना नाम लिखा",
+      "char_start": 180,
+      "char_end": 216,
+      "type": "action",
+      "expected_verdict": "no_evidence",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": null,
+      "evidence": [],
+      "note": "Visitor register not collected; top evidence request"
+    },
+    {
+      "id": "G5",
+      "statement": "guard",
+      "quote": "दस बजे के बाद कोई और कर्मचारी ऑफिस नहीं आया",
+      "char_start": 218,
+      "char_end": 261,
+      "type": "absence",
+      "expected_verdict": "supported",
+      "expected_rule": null,
+      "expected_rules": [],
+      "expected_strength": "direct",
+      "evidence": [
+        "door_log.csv#row184"
+      ],
+      "note": "No employee badge IN after 22:00 on 3 Dec"
+    }
+  ],
+  "planted": {
+    "real_contradictions": [
+      "M1",
+      "M5",
+      "M6",
+      "R2",
+      "G2"
+    ],
+    "harmless_conflicts": [
+      {
+        "id": "CAM-B order",
+        "rule": "R1",
+        "items": [
+          "cctv/cam_a_2206.png",
+          "cctv/cam_b_2205.png"
+        ],
+        "fixed_by": "calibration: CAM-B +420 s, so 22:05:40 becomes 22:12:40 +/- 60 s"
+      },
+      {
+        "id": "PC log UTC",
+        "items": [
+          "pc14_events.csv#row22"
+        ],
+        "fixed_by": "UTC to IST: 16:44:05Z = 22:14:05 IST"
+      }
+    ],
+    "two_places_conflict": {
+      "rule": "R4",
+      "items": [
+        "pc14_events.csv#row21",
+        "upi_ravi.csv#row11"
+      ],
+      "note": "ravi.k logs on at the office at 22:13:21; Ravi's UPI pays at the dhaba at 22:20:31; travel is at least 12 min"
+    },
+    "false_alarm": "door_log.csv#row186",
+    "false_alarm_note": "V-03 IN twice 42 s apart without an OUT: a double tap. R6 (2 s) does not merge them; the reviewer rejects it.",
+    "known_failure": "cctv/cam_b_blurry.png",
+    "known_failure_truth": {
+      "overlay": "03-12-2025 22:24:05",
+      "corrected": "2025-12-03T22:31:05+05:30"
+    },
+    "cctv_truth": {
+      "cctv/cam_a_2206.png": "03-12-2025 22:06:20",
+      "cctv/cam_b_2205.png": "03-12-2025 22:05:40"
+    }
+  },
+  "expected_requests_top3": [
+    "visitor_register",
+    "dhaba_cctv",
+    "telecom_location"
+  ],
+  "refs": {
+    "ravi_in": "door_log.csv#row93",
+    "ravi_out": "door_log.csv#row184",
+    "v03_in": "door_log.csv#row185",
+    "v03_double": "door_log.csv#row186",
+    "v03_out": "door_log.csv#row187",
+    "logon": "pc14_events.csv#row21",
+    "usb": "pc14_events.csv#row22",
+    "copy_first": "pc14_events.csv#row23",
+    "copy_last": "pc14_events.csv#row31",
+    "aman_loan": "upi_ravi.csv#row6",
+    "dhaba": "upi_ravi.csv#row11",
+    "aman_return": "upi_ravi.csv#row12",
+    "loan_ask": "whatsapp_ravi_aman.txt#line10",
+    "loan_ok": "whatsapp_ravi_aman.txt#line11",
+    "dhaba_chat": "whatsapp_ravi_aman.txt#line22",
+    "aman_paid_chat": "whatsapp_ravi_aman.txt#line30"
+  }
+}

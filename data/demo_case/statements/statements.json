@@ -1,0 +1,22 @@
+{
+  "statements": [
+    {
+      "file": "manager.txt",
+      "speaker": "Sunil Mehta",
+      "role": "complainant",
+      "language": "en"
+    },
+    {
+      "file": "ravi.txt",
+      "speaker": "Ravi Kumar",
+      "role": "suspect",
+      "language": "hi-Latn"
+    },
+    {
+      "file": "guard.txt",
+      "speaker": "Ramesh Yadav",
+      "role": "witness",
+      "language": "hi"
+    }
+  ]
+}
