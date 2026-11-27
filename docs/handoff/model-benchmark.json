@@ -1,0 +1,38 @@
+[
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "manager.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.11
+  },
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "ravi.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.03
+  },
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "guard.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.03
+  },
+  {
+    "model": "gemma:2b",
+    "statement": "manager.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.03
+  },
+  {
+    "model": "gemma:2b",
+    "statement": "ravi.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.03
+  },
+  {
+    "model": "gemma:2b",
+    "statement": "guard.txt",
+    "error": "Local Ollama extraction unavailable",
+    "seconds": 30.03
+  }
+]

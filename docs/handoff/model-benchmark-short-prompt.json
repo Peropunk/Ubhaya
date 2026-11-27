@@ -1,0 +1,23 @@
+[
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "manager.txt",
+    "method": "shortened exact-quote prompt with capped generation",
+    "error": "timed out",
+    "seconds": 30.15
+  },
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "ravi.txt",
+    "method": "shortened exact-quote prompt with capped generation",
+    "error": "timed out",
+    "seconds": 30.03
+  },
+  {
+    "model": "qwen2.5:0.5b",
+    "statement": "guard.txt",
+    "method": "shortened exact-quote prompt with capped generation",
+    "error": "timed out",
+    "seconds": 30.03
+  }
+]

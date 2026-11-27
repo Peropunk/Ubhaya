@@ -2,11 +2,20 @@
 import json
 import os
 import stat
+import subprocess
+import sys
 from pathlib import Path
 
 from app.db import connect
 from app.intake import audit, service
 from app.intake.store import is_read_only, sha256_file
+
+
+def test_verify_cli_reports_empty_database():
+    script = Path(__file__).resolve().parents[1] / "manage.py"
+    result = subprocess.run([sys.executable, script, "verify"], capture_output=True, text=True)
+    assert result.returncode == 1
+    assert "No cases to verify" in result.stderr
 
 
 def _case_with_file(tmp_path):
@@ -75,3 +84,11 @@ def test_audit_chain_broken_by_deleted_entry(tmp_path):
 def test_entry_hash_formula():
     p = audit.payload_hash(1, "t", "a", "x", {"k": 1})
     assert audit.entry_hash(audit.GENESIS, p, "x") == audit.sha256_hex(audit.GENESIS + p + "x")
+
+
+def test_empty_audit_chain_fails_verification():
+    with connect() as conn:
+        case = service.create_case(conn, "Lost audit entries")
+        conn.execute("DELETE FROM audit_entries WHERE case_id=?", (case["id"],))
+        result = audit.verify(conn, case["id"])
+        assert result["ok"] is False and result["broken_at"] == 1

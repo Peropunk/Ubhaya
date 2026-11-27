@@ -1,0 +1,18 @@
+{
+  "claim_sources": {
+    "cached": 18
+  },
+  "found": 18,
+  "missed": [],
+  "extra": 0,
+  "correct_verdicts": 18,
+  "expected": 18,
+  "incorrect_verdicts": [],
+  "contradictions_found": 5,
+  "false_contradictions": 0,
+  "top_requests": [
+    "visitor_register",
+    "dhaba_cctv",
+    "telecom_location"
+  ]
+}

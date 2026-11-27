@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from datetime import timedelta, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEMO_CASE_DIR = REPO_ROOT / "data" / "demo_case"
 FRONTEND_DIR = REPO_ROOT / "frontend"
 CASE_TIMEZONE = "Asia/Kolkata"
+IST = timezone(timedelta(hours=5, minutes=30))
 
 
 @dataclass(frozen=True)

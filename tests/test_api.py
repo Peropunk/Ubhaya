@@ -46,3 +46,8 @@ def test_bad_artifact_type_rejected(client):
 def test_ui_served(client):
     r = client.get("/ui/")
     assert r.status_code == 200 and "UBHAYA" in r.text
+
+
+def test_missing_case_collections_and_audit(client):
+    for resource in ("events", "statements", "audit", "audit/verify"):
+        assert client.get(f"/cases/C999/{resource}").status_code == 404

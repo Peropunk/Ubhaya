@@ -6,8 +6,8 @@ set -eu
 cd "$(dirname "$0")/.."
 start=$(date +%s)
 
-[ -d .venv ] || python3 -m venv .venv
 PY=.venv/bin/python
+[ -x "$PY" ] || python3 -m venv .venv
 
 if [ "${1:-}" = "--download" ]; then
   $PY -m pip download -r requirements.txt -d vendor/wheels
@@ -22,6 +22,6 @@ else
   $PY -m pip install -r requirements.txt
 fi
 
-$PY manage.py load-demo --fresh
+$PY manage.py load-demo
 $PY manage.py test
 echo "Setup done in $(( ($(date +%s) - start) / 60 )) min. Start with: $PY manage.py run  then open http://127.0.0.1:8000/ui/"

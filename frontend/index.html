@@ -7,78 +7,99 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="logo">UBHAYA</span>
-      <span class="tagline">Every claim, checked against the evidence</span>
+  <header class="masthead">
+    <div class="topbar">
+      <a class="brand" href="#overview">UBHAYA <span>Evidence review</span></a>
+      <div class="case-picker">
+        <label for="case-select">Case</label>
+        <select id="case-select" disabled></select>
+      </div>
     </div>
-    <div class="case-picker">
-      <label for="case-select">Case</label>
-      <select id="case-select"></select>
-    </div>
+    <nav class="navigation" aria-label="Case workspace">
+      <a class="tab" data-view="overview" href="#overview">Overview</a>
+      <a class="tab" data-view="statements-section" href="#statements-section">Statements</a>
+      <a class="tab" data-view="timeline" href="#timeline">Timeline</a>
+      <a class="tab" data-view="accounts" href="#accounts">Accounts</a>
+      <a class="tab" data-view="requests" href="#requests">Requests &amp; report</a>
+    </nav>
   </header>
 
-  <nav class="tabs" aria-label="Screens">
-    <a class="tab active" href="#overview">1 Case overview</a>
-    <span class="tab disabled" title="Phase 2 (P2.4)">2 Statements</span>
-    <span class="tab disabled" title="Phase 2 (P2.4)">3 Claim detail</span>
-    <span class="tab disabled" title="Phase 4 (P4.7)">4 Timeline</span>
-    <span class="tab disabled" title="Phase 4 (P4.1)">5 Account board</span>
-    <span class="tab disabled" title="Phase 4 (P4.3)">6 Next evidence</span>
-  </nav>
-
-  <main id="overview">
-    <section id="empty" class="notice" hidden>
-      No case loaded yet. Run <code>python manage.py load-demo</code> and refresh.
-    </section>
-
-    <section id="case-head" hidden>
-      <div class="case-title-row">
-        <h1 id="case-title"></h1>
-        <span id="synthetic-badge" class="badge synthetic" hidden>Synthetic data</span>
+    <main>
+      <div id="case-loading">
+        <p class="muted" role="status">Loading case records…</p>
+        <div class="skeleton" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       </div>
-      <p id="case-scope" class="muted"></p>
-      <div class="stats">
-        <div class="stat"><span class="num" id="stat-artifacts">0</span><span class="lbl">Artifacts</span></div>
-        <div class="stat"><span class="num" id="stat-statements">0</span><span class="lbl">Statements</span></div>
-        <div class="stat"><span class="num" id="stat-events">0</span><span class="lbl">Events parsed</span></div>
-        <div class="stat">
-          <span class="num" id="stat-chain">-</span>
-          <span class="lbl">Audit chain <button class="link" id="btn-chain">check</button></span>
+      <div id="empty" class="notice" hidden>
+        <p id="case-message" role="status"></p>
+        <button id="retry-case" hidden>Retry loading case</button>
+      </div>
+      <div id="overview" hidden>
+        <section id="case-head" class="case-heading">
+          <div>
+            <span id="synthetic-badge" class="badge synthetic" hidden>Synthetic case</span>
+            <h1 id="case-title"></h1>
+            <p id="case-scope"></p>
+          </div>
+          <button class="primary" id="analyze">Analyze case</button>
+        </section>
+
+        <div class="case-grid">
+          <aside class="case-summary" aria-labelledby="summary-title">
+            <h2 id="summary-title">Case summary</h2>
+            <dl class="stats">
+              <div><dt>Evidence files</dt><dd id="stat-artifacts"></dd></div>
+              <div><dt>Statements</dt><dd id="stat-statements"></dd></div>
+              <div><dt>Parsed events</dt><dd id="stat-events"></dd></div>
+              <div><dt>Audit chain</dt><dd id="stat-chain" aria-live="polite">Checking…</dd></div>
+            </dl>
+            <button class="link" id="btn-chain">Recheck audit chain</button>
+          </aside>
+
+        <section id="artifacts-section" class="index">
+          <div class="section-head">
+            <div><h2>Evidence index</h2></div>
+            <button id="btn-verify-all">Verify all hashes</button>
+          </div>
+          <p id="verify-status" class="muted status" role="status"></p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Evidence files table">
+            <table id="artifacts">
+              <thead><tr><th scope="col">File</th><th scope="col" class="num">Events</th><th scope="col">Integrity</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
         </div>
       </div>
-    </section>
 
-    <section id="artifacts-section" hidden>
-      <div class="section-head">
-        <h2>Evidence</h2>
-        <button id="btn-verify-all">Verify all hashes</button>
-      </div>
-      <div class="table-wrap">
-        <table id="artifacts">
-          <thead>
-            <tr><th>ID</th><th>File</th><th>Type</th><th>Source</th><th class="num">Size</th><th class="num">Events</th><th>SHA-256</th><th>Integrity</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
+      <section id="statements-section" hidden>
+        <div class="section-head">
+          <div><h1>Statements</h1><p id="analysis-status" class="muted" role="status"></p></div>
+          <button id="analyze-statements">Analyze case</button>
+        </div>
+        <div id="verdict-summary" class="verdict-summary"></div>
+        <div id="statements" class="cards"></div>
+      </section>
 
-    <section id="statements-section" hidden>
-      <h2>Statements</h2>
-      <div id="statements" class="cards"></div>
-    </section>
+      <section id="timeline" hidden>
+        <div class="section-head"><h1>Timeline</h1><label class="control"><input id="calibrated" type="checkbox" checked> Apply clock calibration</label></div>
+        <div class="panel-list"></div>
+      </section>
+      <section id="accounts" hidden><h1>Accounts</h1><div class="cards"></div></section>
+      <section id="requests" hidden><h1>Requests &amp; report</h1><div class="panel-list"></div></section>
 
-    <section id="viewer" class="viewer" hidden>
-      <div class="section-head">
-        <h2 id="viewer-title"></h2>
-        <button class="link" id="viewer-close">Close</button>
-      </div>
-      <div id="viewer-body"></div>
-    </section>
-  </main>
-
-  <footer class="foot">Offline prototype. Synthetic data only: every person, place and number is invented.</footer>
+      <dialog id="detail" class="drawer" aria-labelledby="detail-title">
+        <header class="section-head"><h2 id="detail-title">Claim detail</h2><button id="detail-close">Close</button></header>
+        <div class="drawer-content"></div>
+      </dialog>
+      <dialog id="viewer" class="viewer" aria-labelledby="viewer-title">
+        <header class="section-head">
+          <h2 id="viewer-title"></h2>
+          <button id="viewer-close">Close</button>
+        </header>
+        <div id="viewer-body"></div>
+      </dialog>
+    </main>
+    <footer>Local workspace</footer>
   <script src="app.js"></script>
 </body>
 </html>

@@ -62,7 +62,11 @@ def cmd_verify(args) -> int:
 
     failures = 0
     with connect() as conn:
-        for case in service.list_cases(conn):
+        cases = service.list_cases(conn)
+        if not cases:
+            print("No cases to verify. Check UBHAYA_DATA_DIR or run python manage.py load-demo.", file=sys.stderr)
+            return 1
+        for case in cases:
             for art in service.list_artifacts(conn, case["id"]):
                 res = service.verify_artifact(conn, art["id"], actor="cli")
                 failures += not res["ok"]

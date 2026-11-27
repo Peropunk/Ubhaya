@@ -6,11 +6,21 @@ $ErrorActionPreference = "Stop"
 Set-Location (Split-Path $PSScriptRoot -Parent)
 $start = Get-Date
 
-if (-not (Test-Path .venv)) { python -m venv .venv }
 $py = ".\.venv\Scripts\python.exe"
+if (-not (Test-Path $py)) {
+    if (Get-Command python -ErrorAction SilentlyContinue) {
+        & python -m venv .venv
+    } elseif (Get-Command py -ErrorAction SilentlyContinue) {
+        & py -3 -m venv .venv
+    } else {
+        throw "Install Python 3.12 for Windows, then run setup again."
+    }
+    if ($LASTEXITCODE -ne 0) { throw "Virtual environment creation failed" }
+}
 
 if ($Download) {
     & $py -m pip download -r requirements.txt -d vendor\wheels
+    if ($LASTEXITCODE -ne 0) { throw "wheel download failed" }
     Write-Host "Wheels saved to vendor\wheels. Copy the whole repo folder to the offline laptop."
     exit 0
 }
@@ -22,7 +32,9 @@ if (Test-Path vendor\wheels) {
     & $py -m pip install -r requirements.txt
 }
 
-& $py manage.py load-demo --fresh
+if ($LASTEXITCODE -ne 0) { throw "dependency installation failed" }
+& $py manage.py load-demo
+if ($LASTEXITCODE -ne 0) { throw "demo load failed" }
 & $py manage.py test
 if ($LASTEXITCODE -ne 0) { throw "tests failed" }
 $mins = [math]::Round(((Get-Date) - $start).TotalMinutes, 1)
