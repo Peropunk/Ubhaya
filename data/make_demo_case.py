@@ -356,7 +356,7 @@ def main() -> None:
         ],
         "note": "Synthetic calibration record for the UBHAYA demo.",
     }
-    (OUT / "calibration.json").write_text(json.dumps(calibration, indent=2) + "\n", encoding="utf-8")
+    (OUT / "calibration.json").write_text(json.dumps(calibration, indent=2) + "\n", encoding="utf-8", newline="")
 
     site_config = {
         "case_date": CASE_DATE.isoformat(),
@@ -376,7 +376,7 @@ def main() -> None:
         "actors": {"Ravi Kumar": {"accounts": ["ravi.k"], "badges": ["E-1047"], "upi": ["upi_ravi.csv"], "chat_name": "Ravi Kumar"}},
         "note": "Synthetic site configuration for the UBHAYA demo. Travel time is a demo assumption.",
     }
-    (OUT / "site_config.json").write_text(json.dumps(site_config, indent=2) + "\n", encoding="utf-8")
+    (OUT / "site_config.json").write_text(json.dumps(site_config, indent=2) + "\n", encoding="utf-8", newline="")
 
     # statements
     meta, claim_spans = [], {}
@@ -387,7 +387,7 @@ def main() -> None:
         for cid, (a, b, q) in spans.items():
             assert text[a:b] == q
             claim_spans[cid] = (key, a, b, q)
-    (STM / "statements.json").write_text(json.dumps({"statements": meta}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (STM / "statements.json").write_text(json.dumps({"statements": meta}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="")
 
     # answer key
     def c(cid, verdict, rules, evidence, ctype, strength=None, note=""):
@@ -440,7 +440,7 @@ def main() -> None:
         "expected_requests_top3": ["visitor_register", "dhaba_cctv", "telecom_location"],
         "refs": ref,
     }
-    (OUT / "answers.json").write_text(json.dumps(answers, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (OUT / "answers.json").write_text(json.dumps(answers, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="")
 
     print(f"door_log.csv        {len(drows)} rows")
     print(f"pc14_events.csv     {len(prows)} rows")
