@@ -1,0 +1,65 @@
+[
+  {
+    "quote": "Ravi was the only person with access to PC-14 that night",
+    "type": "presence",
+    "action": "exclusive_access",
+    "char_start": 208,
+    "char_end": 264,
+    "negated": false,
+    "exclusive": true
+  },
+  {
+    "quote": "Ravi's account was used to log in to PC-14 at about 10:10 pm",
+    "type": "action",
+    "action": "logon",
+    "char_start": 266,
+    "char_end": 326,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "The files were copied around 22:15",
+    "type": "time",
+    "action": "file_copy",
+    "char_start": 328,
+    "char_end": 362,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Ravi copied the files himself",
+    "type": "identity",
+    "action": "personal_copy",
+    "char_start": 364,
+    "char_end": 393,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "His friend Aman paid him that same night",
+    "type": "time",
+    "action": "repayment",
+    "char_start": 426,
+    "char_end": 466,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Aman transferred him Rs 20,000",
+    "type": "amount",
+    "action": "repayment",
+    "char_start": 468,
+    "char_end": 498,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Ravi has been asking colleagues for money for months",
+    "type": "action",
+    "action": "borrow",
+    "char_start": 500,
+    "char_end": 552,
+    "negated": false,
+    "exclusive": false
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "quote": "रवि साहब रात करीब 9:50 बजे ऑफिस से बाहर निकले",
+    "type": "time",
+    "action": "badge_out",
+    "char_start": 67,
+    "char_end": 112,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "करीब 10:30 बजे एक विज़िटर आया",
+    "type": "time",
+    "action": "visitor_in",
+    "char_start": 114,
+    "char_end": 143,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "मैंने उसे विज़िटर कार्ड V-03 दिया",
+    "type": "action",
+    "action": "visitor_badge",
+    "char_start": 145,
+    "char_end": 178,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "विज़िटर ने रजिस्टर में अपना नाम लिखा",
+    "type": "action",
+    "action": "register_signed",
+    "char_start": 180,
+    "char_end": 216,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "दस बजे के बाद कोई और कर्मचारी ऑफिस नहीं आया",
+    "type": "absence",
+    "action": "employee_entry",
+    "char_start": 218,
+    "char_end": 261,
+    "negated": true,
+    "exclusive": false
+  }
+]

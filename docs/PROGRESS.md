@@ -7,16 +7,34 @@ Status of every chunk in the development plan. Update this when a chunk's "done 
 | P0.1 | Ask organisers what may be prepared in advance | **Open (PM, people task)** | |
 | P0.2 | Synthetic case pack + answer key | Done | `data/make_demo_case.py`; `tests/test_demo.py` (18 claims, quotes exact, planted rows) |
 | P0.3 | Frozen data schemas and API spec | Done, needs RE + FE review | `docs/SPEC.md` |
-| P0.4 | LLM bake-off | **Open**: Ollama not installed on this laptop | |
-| P0.5 | OCR bake-off | **Open**: no OCR engine installed yet | |
+| P0.4 | LLM bake-off | **Open**: All six original trials timed out. A shorter Qwen prompt also timed out on all three statements | |
+| P0.5 | OCR bake-off | Complete for the three synthetic frames. Built-in reader selected after comparison with Tesseract | [Overlay results](handoff/overlay-results.md) |
 | P0.6 | Rule specs with worked examples | Done | `docs/RULES.md` |
-| P0.7 | Wireframes for 6 screens | Partly: screen 1 built; tabs for 2 to 6 stubbed | `frontend/` |
-| P0.8 | Offline setup script | Done for Python packages; models pending P0.4/P0.5 | `scripts/setup_offline.ps1`, `.sh` |
+| P0.7 | Wireframes for 6 screens | All six screens implemented. Team sign-off open | `frontend/` |
+| P0.8 | Offline setup script | Wheelhouse install passed with loopback only. Presenting-laptop timing and Wi-Fi-off test open | `scripts/setup_offline.ps1`, `.sh` |
 | P1.1 | Repo scaffold | Done | `make run`; `tests/test_api.py` |
 | P1.2 | Intake, read-only store, audit chain | Done | `tests/test_intake.py` (re-hash matches; edited entry breaks chain) |
-| P1.3 | Fixture loader | Done | `make load-demo` → C001, 12 artifacts, 3 statements, 236 events |
+| P1.3 | Fixture loader | Done | `make load-demo` → C001, 12 artifacts, 3 statements, 276 events |
 | P1.4 | Parsers: door, PC log (UTC), UPI | Done | `tests/test_parsers.py` |
 | P1.5 | Interface shell: case overview | Done | http://127.0.0.1:8000/ui/ |
+| P2.1 | Validate extracted claims | Implemented. Cached path verified. Live acceptance target open | `backend/app/extract/` |
+| P2.2 | Convert event timestamps and assign uncertainty ranges | Done | `tests/test_timeengine.py`; `tests/test_demo.py` checks all 276 stored ranges and PC-14 row 22 through the events API |
+| P2.3 | Match claims to events for the first verdict | Done in cached demo | |
+| P2.4 | Highlight claims and link verdicts to evidence rows | Implemented | |
+| P2.5 | Score extracted claims against the answer key | Done | |
+
+| P3.1 | WhatsApp parser | Done for the demo export | Arrival on line 22 |
+| P3.2 | CCTV overlay and manual time | Done for the demo stills | Two readable frames, one manual entry |
+| P3.3 | Clock calibration | Done | CAM-B becomes 22:12:40 ± 60 s |
+| P3.4–P3.5 | Rules and verdicts | Verified on PC-14 | `tests/test_analysis.py` |
+| P3.6, P5.2 | Evaluation and saved results | Done in cached mode | [Evaluation](handoff/evaluation.json) |
+| P4.1–P4.7 | Accounts, alternatives, ranking, drafts, reviews, exports and timeline | Implemented for the synthetic case. Live alternatives depend on local inference | [Handoff](handoff/README.md) |
+| P5.1 | Mentor feedback | Open | Requires checkpoint feedback |
+| P5.3 | Offline fallback | Cached claim annotations and evidence-bound templates | Model-free browser walkthrough |
+| P5.4 | Demo verification | Three browser runs passed with loopback only. Presenting-laptop check open | [Offline verification](handoff/offline-verification.md) |
+| P5.5 | Stretch features | Deferred | |
+| P6.1–P6.3 | Recording, pitch and demo materials | Five-minute backup and local handoff prepared. Organiser package and freeze pending | [Handoff](handoff/README.md) |
+| P6.4 | Team rehearsals | Open | Requires presenters |
 
 ## Deviations from the plan text (decided in P0.2 / P0.6)
 

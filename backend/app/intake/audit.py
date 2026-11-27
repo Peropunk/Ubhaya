@@ -4,12 +4,12 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 
+from ..config import IST
 from ..db import fetch_all, insert
 
 GENESIS = "0" * 64
-IST = timezone(timedelta(hours=5, minutes=30))
 
 
 def now_ist() -> str:
@@ -35,6 +35,8 @@ def entry_hash(prev: str, p_hash: str, action: str) -> str:
 
 
 def append(conn: sqlite3.Connection, case_id: str, actor: str, action: str, payload: dict) -> dict:
+    if not conn.in_transaction:
+        conn.execute("BEGIN IMMEDIATE")
     last = conn.execute(
         "SELECT seq, entry_hash FROM audit_entries WHERE case_id = ? ORDER BY seq DESC LIMIT 1", (case_id,)
     ).fetchone()
@@ -57,6 +59,8 @@ def entries(conn: sqlite3.Connection, case_id: str) -> list[dict]:
 
 def verify(conn: sqlite3.Connection, case_id: str) -> dict:
     rows = entries(conn, case_id)
+    if not rows:
+        return {"ok": False, "entries": 0, "broken_at": 1, "reason": "missing first entry"}
     prev = GENESIS
     for expected_seq, e in enumerate(rows, start=1):
         if e["seq"] != expected_seq:

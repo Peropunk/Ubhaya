@@ -34,7 +34,7 @@ def make_read_only(path: Path) -> None:
 
 
 def is_read_only(path: Path) -> bool:
-    return not os.access(path, os.W_OK)
+    return not path.stat().st_mode & stat.S_IWRITE
 
 
 def put_stream(stream: BinaryIO) -> tuple[str, int, Path]:

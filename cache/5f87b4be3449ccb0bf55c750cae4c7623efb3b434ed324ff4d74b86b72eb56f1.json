@@ -1,0 +1,56 @@
+[
+  {
+    "quote": "Main 9:50 pe office se nikal gaya tha",
+    "type": "time",
+    "action": "badge_out",
+    "char_start": 75,
+    "char_end": 112,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "9:55 tak main Sharma Dhaba pahunch gaya tha",
+    "type": "presence",
+    "action": "arrival",
+    "char_start": 114,
+    "char_end": 157,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Dhaba pe maine 340 rupaye UPI se pay kiye, kareeb 10:20 baje",
+    "type": "amount",
+    "action": "upi_debit",
+    "char_start": 159,
+    "char_end": 219,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Maine us raat PC-14 pe login nahi kiya",
+    "type": "absence",
+    "action": "personal_logon",
+    "char_start": 221,
+    "char_end": 259,
+    "negated": true,
+    "exclusive": false
+  },
+  {
+    "quote": "Mera password team ki shared sheet mein likha hua tha",
+    "type": "action",
+    "action": "password_shared",
+    "char_start": 261,
+    "char_end": 314,
+    "negated": false,
+    "exclusive": false
+  },
+  {
+    "quote": "Aman ne 4 December ko mere 15,000 rupaye wapas kiye the",
+    "type": "amount",
+    "action": "repayment",
+    "char_start": 316,
+    "char_end": 371,
+    "negated": false,
+    "exclusive": false
+  }
+]

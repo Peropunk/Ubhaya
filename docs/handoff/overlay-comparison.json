@@ -1,0 +1,29 @@
+[
+  {
+    "frame": "cctv/cam_a_2206.png",
+    "expected": "03-12-2025 22:06:20",
+    "built_in": "03-12-2025 22:06:20",
+    "built_in_score": 1.0,
+    "built_in_errors": 0,
+    "tesseract": "03-12-2025 22:06:20",
+    "tesseract_errors": 0
+  },
+  {
+    "frame": "cctv/cam_b_2205.png",
+    "expected": "03-12-2025 22:05:40",
+    "built_in": "03-12-2025 22:05:40",
+    "built_in_score": 1.0,
+    "built_in_errors": 0,
+    "tesseract": "03-12-2025 22:05:40",
+    "tesseract_errors": 0
+  },
+  {
+    "frame": "cctv/cam_b_blurry.png",
+    "expected": "03-12-2025 22:24:05",
+    "built_in": null,
+    "built_in_score": 0.528,
+    "built_in_errors": null,
+    "tesseract": "- -",
+    "tesseract_errors": 17
+  }
+]

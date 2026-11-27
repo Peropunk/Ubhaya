@@ -9,6 +9,7 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
+from .analysis import require_case, router as analysis_router
 from . import models
 from .config import FRONTEND_DIR
 from .db import connect, fetch_all
@@ -58,6 +59,8 @@ def upload_artifact(case_id: str, file: UploadFile = File(...), type: models.Art
                     source: str = Form(...), acquired_at: Optional[str] = Form(None), meta: Optional[str] = Form(None)):
     try:
         meta_obj = json.loads(meta) if meta else {}
+        if not isinstance(meta_obj, dict):
+            raise HTTPException(status_code=422, detail="meta must be a JSON object")
     except json.JSONDecodeError:
         raise HTTPException(status_code=422, detail="meta must be a JSON object")
     with connect() as conn:
@@ -110,24 +113,28 @@ def verify_artifact(artifact_id: str):
 @app.get("/cases/{case_id}/statements", response_model=list[models.Statement])
 def list_statements(case_id: str):
     with connect() as conn:
+        require_case(conn, case_id)
         return fetch_all(conn, "SELECT * FROM statements WHERE case_id = ? ORDER BY id", (case_id,))
 
 
 @app.get("/cases/{case_id}/events", response_model=list[models.Event])
 def get_events(case_id: str, artifact_id: Optional[str] = None):
     with connect() as conn:
+        require_case(conn, case_id)
         return list_events(conn, case_id, artifact_id)
 
 
 @app.get("/cases/{case_id}/audit", response_model=list[models.AuditEntry])
 def get_audit(case_id: str):
     with connect() as conn:
+        require_case(conn, case_id)
         return audit.entries(conn, case_id)
 
 
 @app.get("/cases/{case_id}/audit/verify", response_model=models.AuditVerify)
 def verify_audit(case_id: str):
     with connect() as conn:
+        require_case(conn, case_id)
         return audit.verify(conn, case_id)
 
 
@@ -139,3 +146,21 @@ if FRONTEND_DIR.exists():
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/ui/")
+
+
+@app.post("/cases/{case_id}/statements/{statement_id}/extract", response_model=list[models.Claim])
+def extract_case_statement(case_id: str, statement_id: str):
+    from .extract import extract_statement
+
+    with connect() as conn:
+        try:
+            return extract_statement(conn, case_id, statement_id)
+        except NotFound as exc:
+            raise _not_found(exc)
+        except ConnectionError as exc:
+            raise HTTPException(503, detail=str(exc))
+        except ValueError as exc:
+            raise HTTPException(422, detail=str(exc))
+
+
+app.include_router(analysis_router)
